@@ -15,8 +15,8 @@ Controller::Controller()
 	thrust_com << 0, 0, 0, 0, 0, 0, 0, 0;
 	thrust_com_pre << 0, 0, 0, 0, 0, 0, 0, 0;
 
-	Pgain << 10.0, 10.0, 10.0;
-	Dgain << 15.0, 15.0, 18.0;
+	Pgain << 6.0, 6.0, 5.0;
+	Dgain << 25.0, 25.0, 30.0;
 	
 	angErPre = 0.0;
 	cont = 1; 

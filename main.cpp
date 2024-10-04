@@ -27,11 +27,24 @@ int main() {
     std::signal(SIGINT, signalHandler);
 
     SimulatedVehicle* abv = new SimulatedVehicle(); 
-    Controller* controller = new Controller(); 
-    VehicleVisualizer* visualizer = new VehicleVisualizer(800, 600);
+    Controller* controller = new Controller();
+    
+    // Real-world table dimensions (meters)
+    float tableWidthMeters = 1.8f;   // Table width in meters
+    float tableHeightMeters = 3.6f;  // Table height in meters
+
+    // Real-world vehicle dimensions (square robot: 0.5m x 0.5m)
+    float vehicleSizeMeters = 0.5f;
+
+    // Define a margin around the table
+    float marginMeters = 0.75f;  // 30cm margin around the table
+
+    // Create the visualizer with real-world dimensions and a margin
+    VehicleVisualizer* visualizer = new VehicleVisualizer(tableWidthMeters, tableHeightMeters, vehicleSizeMeters, marginMeters);
+
     VehicleState vehicleState; 
 
-    Eigen::Vector3d desiredPose = Eigen::Vector3d(1, 1, 0.157);
+    Eigen::Vector3d desiredPose = Eigen::Vector3d(1.2, 1.2, 0.7071);
     Eigen::Vector3d desiredVelocity = Eigen::Vector3d(0, 0, 0);
 
 
@@ -59,7 +72,7 @@ int main() {
         visualizer->render();
 
         // Add a small delay to control the simulation speed
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        std::this_thread::sleep_for(std::chrono::milliseconds(25));
     }
 
     printf("Simulation complete\n");
